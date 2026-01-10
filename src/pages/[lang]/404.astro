@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/ErrorLayout.astro"    
+import { useTranslations } from "../../i18n/utils.js";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang);
+---
+
+<Layout 
+    title={t("error404.title")} 
+    code={t("error404.code")} 
+    message={t("error404.message")}
+    returnButton={t("error404.returnButton")}
+>
+</Layout>

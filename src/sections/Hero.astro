@@ -1,0 +1,135 @@
+---
+import SocialTags from "../components/SocialTags.astro";
+import background from "../assets/background.svg";
+import { SITE_DATA } from "../config.js";
+
+interface Props {
+    title: string;
+    subtitle: string;
+    description: string;
+}
+
+const { title, subtitle, description } = Astro.props;
+---
+
+<section
+    id="hero"
+    class="relative w-full min-h-[100dvh] mx-auto xl:w-3/4 xl:mx-0
+    p-5 md:p-20 flex flex-col items-center md:items-start justify-center"
+>
+    <img
+        src={background.src}
+        alt="imagen de fondo"
+        class="absolute z-[-1] w-full h-full object-cover top-0 left-0 blur-[120px]"
+        width="1920"
+        height="1080"
+        fetchpriority="high"
+    />
+
+    <!-- Background Glow Effect -->
+    <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+        w-[90vw] h-[90vw] max-w-[500px] max-h-[500px] bg-primary-600/20 blur-[120px] rounded-full
+        pointer-events-none -z-10"
+    >
+    </div>
+
+    <h1
+        class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent
+        bg-gradient-to-r from-white via-primary-200 to-primary-400 pb-2
+        animate-stagger-1 opacity-0 translate-y-4 will-change-transform"
+    >
+        {title}
+    </h1>
+
+    <h2
+        class="text-5xl md:text-7xl font-bold mt-2 tracking-tight
+        animate-stagger-2 opacity-0 translate-y-4 will-change-transform"
+    >
+        {subtitle}
+    </h2>
+
+    <div
+        class="animate-stagger-3 opacity-0 translate-y-4 flex flex-wrap gap-4 mt-8 items-center justify-center md:justify-start will-change-transform"
+    >
+        {
+            SITE_DATA.socials.map((social) => (
+                <SocialTags
+                    name={social.name}
+                    href={social.type + social.url}
+                    icon={social.icon}
+                />
+            ))
+        }
+    </div>
+
+    <div
+        class="animate-stagger-4 opacity-0 translate-y-4 max-w-2xl will-change-transform"
+    >
+        <p
+            class="mt-8 text-xl md:text-2xl font-medium text-color leading-relaxed shadow-black/50 drop-shadow-lg text-center md:text-left"
+        >
+            {description}
+        </p>
+    </div>
+</section>
+<!-- Scroll Indicator -->
+<div
+    class="absolute bottom-10 right-10 hidden md:flex flex-col items-center gap-4 z-20"
+>
+    <span
+        class="text-xs font-semibold tracking-widest text-color uppercase"
+        style="writing-mode: vertical-rl;"
+    >
+        Scroll
+    </span>
+    <div class="h-16 w-[1px] bg-gray-700/50 relative overflow-hidden">
+        <div
+            class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent to-primary-400 animate-scroll-down will-change-transform"
+        >
+        </div>
+    </div>
+</div>
+<style>
+    /* Custom Staggered Animations */
+    .animate-stagger-1 {
+        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        animation-delay: 0.1s;
+    }
+    .animate-stagger-2 {
+        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        animation-delay: 0.2s;
+    }
+    .animate-stagger-3 {
+        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        animation-delay: 0.3s;
+    }
+    .animate-stagger-4 {
+        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        animation-delay: 0.4s;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes scrollDown {
+        0% {
+            transform: translateY(-100%);
+        }
+        100% {
+            transform: translateY(100%);
+        }
+    }
+
+    .animate-scroll-down {
+        animation: scrollDown 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+</style>

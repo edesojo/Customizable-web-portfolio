@@ -1,0 +1,16 @@
+
+:root {
+    /* --- CONFIGURACIÓN BASE (Editables) --- */
+
+    /* Primary:*/
+    --primary-h: 290; 
+    --primary-c: 0.265; 
+
+    /* Surface: Fondos */
+    --surface-h: 0;
+    --surface-c: 0; 
+
+    /* Textos base */
+    --text-color: oklch(100% 0 0);
+    --color-tag:  oklch(100% 0 0);
+}

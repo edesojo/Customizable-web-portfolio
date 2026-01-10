@@ -1,0 +1,165 @@
+@import "tailwindcss";
+@import "./colors.css";
+:root {
+
+    /* --- PALETA AUTOMÁTICA (OKLCH) --- */
+    /* Sintaxis: oklch( Luminosidad%  Croma  Hue ) */
+    --color-primary-50:  oklch(98% var(--primary-c) var(--primary-h));
+    --color-primary-100: oklch(96% var(--primary-c) var(--primary-h));
+    --color-primary-200: oklch(90% var(--primary-c) var(--primary-h));
+    --color-primary-300: oklch(80% var(--primary-c) var(--primary-h));
+    --color-primary-400: oklch(70% var(--primary-c) var(--primary-h));
+    --color-primary-500: oklch(62.7% var(--primary-c) var(--primary-h));
+    --color-primary-600: oklch(52% var(--primary-c) var(--primary-h));
+    --color-primary-700: oklch(42% var(--primary-c) var(--primary-h));
+    --color-primary-800: oklch(30% var(--primary-c) var(--primary-h));
+    --color-primary-900: oklch(20% var(--primary-c) var(--primary-h));
+    --color-primary-950: oklch(10% var(--primary-c) var(--primary-h));
+
+
+    /* --- PALETA SURFACE (Fondos) --- */
+    --color-surface-50:  oklch(98% var(--surface-c) var(--surface-h));
+    --color-surface-100: oklch(96% var(--surface-c) var(--surface-h));
+    --color-surface-200: oklch(90% var(--surface-c) var(--surface-h));
+    --color-surface-300: oklch(83% var(--surface-c) var(--surface-h));
+    --color-surface-400: oklch(70% var(--surface-c) var(--surface-h));
+    --color-surface-500: oklch(55% var(--surface-c) var(--surface-h)); 
+    --color-surface-600: oklch(45% var(--surface-c) var(--surface-h));
+    --color-surface-700: oklch(35% var(--surface-c) var(--surface-h));
+    --color-surface-800: oklch(25% var(--surface-c) var(--surface-h));
+    --color-surface-900: oklch(16% var(--surface-c) var(--surface-h));
+    --color-surface-950: oklch(5%  var(--surface-c) var(--surface-h));
+}
+
+@theme {
+    --color-primary-50: var(--color-primary-50);
+    --color-primary-100: var(--color-primary-100);
+    --color-primary-200: var(--color-primary-200);
+    --color-primary-300: var(--color-primary-300);
+    --color-primary-400: var(--color-primary-400);
+    --color-primary-500: var(--color-primary-500);
+    --color-primary-600: var(--color-primary-600);
+    --color-primary-700: var(--color-primary-700);
+    --color-primary-800: var(--color-primary-800);
+    --color-primary-900: var(--color-primary-900);
+    --color-primary-950: var(--color-primary-950);
+
+    --color-surface-50: var(--color-surface-50);
+    --color-surface-100: var(--color-surface-100);
+    --color-surface-200: var(--color-surface-200);
+    --color-surface-300: var(--color-surface-300);
+    --color-surface-400: var(--color-surface-400);
+    --color-surface-500: var(--color-surface-500);
+    --color-surface-600: var(--color-surface-600);
+    --color-surface-700: var(--color-surface-700);
+    --color-surface-800: var(--color-surface-800);
+    --color-surface-900: var(--color-surface-900);
+    --color-surface-950: var(--color-surface-950);
+    
+    --text-color: var(--text-color);
+    --color-tag: var(--color-tag);
+}
+
+.text-color {
+    color: var(--text-color);
+}
+
+:root::selection {
+    background-color: var(--color-primary-500);
+    color: white;
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Compensate for fixed header */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-surface-950);
+    background-image: radial-gradient(circle, var(--color-primary-500), 5%, var(--color-surface-950), 5%);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.095);
+    border-radius: 5px;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Reveal Animations */
+.reveal-active {
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Delay utilities for reveal */
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal-card.reveal-active {
+    animation: fadeInRight 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin 15s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}

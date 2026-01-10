@@ -1,0 +1,182 @@
+---
+import SkillTag from "../components/SkillTag.astro";
+import { SITE_DATA } from "../config";
+import java from "../assets/icons/java.svg";
+
+interface Props {
+    subtitle: string;
+    title: string;
+    description: string;
+}
+
+const { subtitle, title, description } = Astro.props;
+
+var skillsByCategories = new Map<
+    String,
+    [{ name: string; category: string; icon?: string }]
+>();
+
+SITE_DATA.skills.map((skill) => {
+    if (!skillsByCategories.get(skill.category)) {
+        skillsByCategories.set(skill.category, [
+            {
+                name: skill.name,
+                category: skill.category,
+                icon: skill.icon,
+            },
+
+        ]);
+    } else {
+        skillsByCategories.get(skill.category)?.push({
+            name: skill.name,
+            category: skill.category,
+            icon: skill.icon,
+        });
+    }
+});
+---
+
+<section
+    id="skills"
+    class="relative w-full min-h-[50vh] flex flex-col items-center justify-center py-20 px-4"
+>
+    <!-- Background Glow -->
+    <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-primary-900/10 blur-[120px] rounded-full -z-10 pointer-events-none"
+    >
+    </div>
+
+    <!--Skill Main Container -->
+    <div
+        class="container mx-auto max-w-6xl z-10 flex flex-col items-center gap-16"
+    >
+        <!--Section Header -->
+        <div class="text-center space-y-6">
+            <h2
+                class="text-sm md:text-base font-semibold tracking-[0.2em] text-primary-300 uppercase animate-fade-in-up"
+                style="animation-delay: 0.1s;"
+            >
+                {subtitle}
+            </h2>
+            <h2
+                class="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-primary-200 to-primary-400 pb-2 animate-fade-in-up"
+                style="animation-delay: 0.2s;"
+            >
+                {title}
+            </h2>
+            <p
+                class="text-color max-w-xl mx-auto text-lg leading-relaxed animate-fade-in-up"
+                style="animation-delay: 0.3s;"
+            >
+                {description}
+            </p>
+        </div>
+
+        <!-- Skills Container -->
+        <div
+            class="w-full relative animate-fade-in-up"
+            style="animation-delay: 0.4s;"
+        >
+            <div
+                class="relative w-full rounded-3xl
+                p-8 md:p-12 overflow-hidden group
+                bg-gradient-to-b from-white/5 to-transparent
+                border border-white/10 shadow-2xl backdrop-blur-xl"
+            >
+
+                <!-- Decorative Gradients -->
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 blur-[80px] rounded-full pointer-events-none"
+                >
+                </div>
+
+                <div
+                    class="absolute bottom-0 left-0 w-64 h-64 bg-secondary-500/10 blur-[80px] rounded-full pointer-events-none"
+                >
+                </div>
+
+                <!-- Tags Layout -->
+                <div class="flex flex-wrap justify-start md:justify-center gap-4 reveal-card opacity-0">
+                    <!-- 
+                        This makes an antomatic loop for each category and skills
+                        and creates a SkillCategoryContainer for each category
+                        and a SkillTag for each skill
+                        The result of this, is a containter that has a category name
+                        and a list of skills for that category   
+                        ----------- 
+                        |Category|
+                        -----------
+                        |Skill 1 |
+                        |Skill 2 |
+                        |Skill 3 |
+                        -----------
+                    -->
+                    {
+                        Array.from(skillsByCategories).map(
+                            ([category, skills]) => (
+                                //Skill Category Container
+                                <div
+                                    class="
+                                    flex flex-col items-start
+                                    text-start
+                                    w-fit md:max-w-1/4 gap-3
+                                    "
+                                >
+                                    <h2
+                                        class="
+                                            text-sm md:text-base font-semibold tracking-[0.2em] 
+                                            text-primary-300 uppercase animate-fade-in-up
+                                            text-start
+                                            w-fit
+                                        "
+                                        style="animation-delay: 0.1s;"
+                                    >
+                                        {category}
+                                    </h2>
+
+                                    <!-- Skill Tags Container -->
+                                    <div 
+                                        class="
+                                        flex flex-row flex-wrap justify-start
+                                        items-center gap-3
+                                    "
+                                    >
+                                        {skills.map((skill) => (
+                                            <SkillTag
+                                                label={skill.name}
+                                                icon={skill.icon}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            ),
+                        )
+                    }
+                </div>
+            </div>
+
+            <!-- Bottom decorative line -->
+            <div
+                class="absolute -bottom-px left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent"
+            >
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in-up {
+        animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+</style>

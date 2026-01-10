@@ -1,0 +1,148 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+    title: string;
+    description: string;
+    image?: string;
+    linkIcon?: string;
+    repoLink?: string;
+    date: string;
+    technologies: string[];
+    lang?: string;
+}
+
+const { title, description, image, linkIcon, repoLink, date, technologies, lang } =
+    Astro.props;
+
+let imgPath = "/projects/default.webp";
+if (image) {
+    imgPath = `/projects/${image}`;
+}
+
+let icon = "globe";
+if(linkIcon != null) {
+    icon = linkIcon;
+}
+---
+
+<article
+    class="flex flex-col
+        w-full md:w-[350px] lg:w-[400px]
+        rounded-2xl
+        overflow-hidden
+        bg-surface-900/50 backdrop-blur-md
+        border border-white/10
+        hover:border-primary-500/30
+        transition-all duration-500
+        group
+        hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary-500/20"
+>
+    <!-- Top Part: Image & Title -->
+    <div class="relative h-48 w-full overflow-hidden">
+        <div class="absolute inset-0 bg-surface-950 animate-pulse z-0"></div>
+        <!-- Placeholder loading -->
+
+        <img
+            src={imgPath}
+            alt={title}
+            class="relative z-10
+                w-full h-full object-cover
+                transition-transform duration-700
+                group-hover:scale-110"
+            loading="lazy"
+        />
+
+        <!-- Overlay Gradient -->
+        <div
+            class="absolute inset-0 z-20
+            bg-gradient-to-t from-surface-950 via-surface-950/20 to-transparent
+            opacity-90
+            "
+            
+        >
+        </div>
+
+        <!-- Title Overlay -->
+        <h3
+            class="absolute bottom-4 left-5 z-30
+            text-2xl font-bold text-white
+            group-hover:text-primary-300 transition-colors duration-300"
+        >
+            {title}
+        </h3>
+    </div>
+
+    <!-- Middle Part: Description, Link, Date -->
+    <div
+        class="flex flex-col flex-grow
+        p-6 gap-6
+        bg-surface-900
+        relative"
+    >
+        <!-- Description -->
+        <p class="text-surface-300 text-sm leading-relaxed line-clamp-3">
+            {description}
+        </p>
+
+        <!-- Metadata & Link -->
+        <div
+            class="flex items-center justify-between mt-auto pt-4 border-t border-white/5"
+        >
+            <span
+                class="text-xs font-mono text-primary-400 bg-primary-500/10 px-2 py-1 rounded"
+            >
+                {date}
+            </span>
+
+            <div class="flex gap-3">
+                {
+                    repoLink && (
+                        <a
+                            href={repoLink}
+                            target="_blank"
+                            class="
+                            border-2 border-primary-500
+                            rounded-xl
+                            p-2
+                            hover:border-primary-500/30
+                            transition-colors
+                            text-white hover:text-primary-400 transition-colors
+                            "
+                            aria-label="GitHub Repo"
+                        >   
+                            <Icon name={icon} class="w-6 h-6" />
+                        </a>
+                    )
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Part: Technologies -->
+    <div
+        class="px-6 py-4
+        bg-surface-950/50
+        border-t border-white/5"
+    >
+        <div class="flex flex-wrap gap-2">
+            {
+                technologies.map((tech) => (
+                    <span
+                        class="
+                    text-[10px] uppercase tracking-wider font-semibold 
+                    px-2 py-1 
+                    rounded-md 
+                    bg-white/5 text-surface-300
+                    border border-white/5
+                    group-hover:border-primary-500/20 group-hover:text-primary-200 transition-colors duration-300
+                "
+                    >
+                        {tech}
+                    </span>
+                ))
+            }
+        </div>
+    </div>
+</article>

@@ -1,0 +1,26 @@
+---
+import {allowedLanguages, defaultLanguage} from "../i18n/ui.js";
+
+// 1. Obtenemos la ruta que el usuario escribió (ej: "/contacto")
+const { pathname } = Astro.url;
+
+// 2. Limpiamos la ruta para que no tenga barras al principio ni al final
+// Esto evita el error de "/es//contacto"
+const paths = pathname.split('/').filter(Boolean);
+const cleanPath = paths.join('/');
+
+// 3. Detectamos si el usuario ya está en una ruta con idioma (es o en)
+const hasLang = allowedLanguages.has(paths[0]);
+
+if (hasLang) {
+    // Si ya tiene idioma y llegó aquí, es que la página NO existe.
+    //Redirigimos a la versión con idioma de esa misma ruta
+    const lang = allowedLanguages.has(paths[0]) ? paths[0] : defaultLanguage;
+    return Astro.redirect(`/${lang}/404`);//Redirigimos a la versión con idioma de esa misma ruta
+} else {    
+    // Si NO tiene idioma, intentamos adivinarlo. 
+    // Si no es "en", por defecto será "es".
+    const lang = allowedLanguages.has(paths[0]) ? paths[0] : defaultLanguage;
+    return Astro.redirect(`/${lang}/${cleanPath}`);//Redirigimos a la versión con idioma de esa misma ruta
+}
+---

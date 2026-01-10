@@ -1,0 +1,39 @@
+---
+import {Icon} from "astro-icon/components";
+
+interface Props {
+    name: string;
+    href: string;
+    icon: string;
+}
+
+const { name, href, icon } = Astro.props;
+---
+
+<a href={href} 
+class="
+flex gap-2 items-center px-4 py-2 rounded-lg border-2 
+transition-all duration-300 ease-in-out 
+hover:-translate-y-1 hover:shadow-lg hover:tr backdrop-blur-sm 
+hoverEffect text-tag
+flex-grow md:flex-grow-0"
+target="_blank"
+>
+    <Icon 
+        name={icon}
+        size={24}
+    />    
+    <span class="font-medium tracking-wide">{name}</span>
+</a>
+
+<style>
+    .hoverEffect:hover {
+        perspective: 1000px;
+        transform: rotateX(-15deg) rotateY(10deg) translate(0, -5px);
+        box-shadow: -2px 6px 0px var(--color-tag);
+        background-color: var(--color-tag);
+        color: black;
+        border: 2px solid black;
+        box-sizing: border-box;
+    }
+</style>

@@ -1,0 +1,52 @@
+---
+import { useTranslations } from "../../i18n/utils.js";
+export function getStaticPaths() {
+	return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang);
+
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../sections/Hero.astro";
+import Skills from "../../sections/Skills.astro";
+import Education from "../../sections/Education.astro";
+import Experience from "../../sections/Experience.astro";
+import Projects from "../../sections/Projects.astro";
+import AboutMe from "../../sections/AboutMe.astro";
+---
+
+<Layout title={t("site.title")} description={t("hero.description")} lang={lang}>
+	<Hero
+		title={t("hero.title")}
+		subtitle={t("hero.subtitle")}
+		description={t("hero.description")}
+	/>
+
+	<AboutMe	
+		title={t("sobremi.title")}
+		text1={t("sobremi.text1")}
+		text2={t("sobremi.text2")}
+		text3={t("sobremi.text3")}
+	/>
+	<Skills
+		subtitle={t("skills.subtitle")}
+		title={t("skills.title")}
+		description={t("skills.description")}
+	/>
+	<Education
+		title={t("education.title")}
+		subtitle={t("education.subtitle")}
+		lang={lang}
+	/>
+	<Experience
+		title={t("experience.title")}
+		subtitle={t("experience.subtitle")}
+		lang={lang}
+	/>
+	<Projects
+		title={t("projects.title")}
+		subtitle={t("projects.subtitle")}
+		lang={lang}
+	/>
+</Layout>

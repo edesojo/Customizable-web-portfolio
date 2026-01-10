@@ -1,0 +1,62 @@
+---
+import "../styles/global.css";
+import background from "../assets/background.svg";
+interface Props {
+    title: string;
+    code: String;
+    message: String;
+    returnButton: String;
+}
+
+const { title, code, message, returnButton } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title}</title>
+    </head>
+    <body
+        class="flex flex-col items-center justify-center h-screen bg-surface-900
+text-white"
+    >
+        <img
+            src={background.src}
+            alt="background"
+            class="fixed z-[-1] w-full h-full object-cover top-0 left-0 blur-[120px]"
+        />
+        <h1 class="text-5xl md:text-9xl font-bold">{code}</h1>
+        <p class="text-xl md:text-2xl font-semibold">{message}</p>
+
+        <a
+            href="/es/"
+            class="relative text-xl md:text-2xl font-bold mt-5 rounded-full px-5 py-2
+    overflow-hidden border-3 border-white text-white"
+            id="returnButton"
+        >
+            {returnButton}
+        </a>
+
+        <slot />
+    </body>
+
+    <style>
+        #returnButton {
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+            transform-style: preserve-3d; /* Permite que el hijo respete el 3D */
+        }
+
+        #returnButton:hover {
+            perspective: 1000px;
+            transform: rotateX(-15deg) rotateY(10deg) translate(0, -5px);
+            box-shadow: -2px 6px 0px white;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            box-sizing: border-box;
+        }
+    </style>
+</html>
