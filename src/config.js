@@ -38,28 +38,28 @@ export const SITE_DATA = {
     ],
 
     // Skills categorizadas según CV 
-skills: [
+    skills: [
         // Frontend - Nombres cortos para cajas de 75px
-        { name: "HTML5", icon: "html", category: "Frontend" }, 
-        { name: "CSS3", icon: "css", category: "Frontend" }, 
-        { name: "JS", icon: "js", category: "Frontend" }, 
-        { name: "WP", icon: "wordpress", category: "Frontend" }, 
-        { name: "Tailwind", icon: "tailwind", category: "Frontend" }, 
-        { name: "Bootstrap", icon: "bootstrap", category: "Frontend" }, 
-        { name: "Flowbite", icon: "flowbite", category: "Frontend" }, 
-        {name: "astro", icon: "astro", category: "Frontend"},
+        { name: "HTML5", icon: "html", category: "Frontend" },
+        { name: "CSS3", icon: "css", category: "Frontend" },
+        { name: "JS", icon: "js", category: "Frontend" },
+        { name: "WP", icon: "wordpress", category: "Frontend" },
+        { name: "Tailwind", icon: "tailwind", category: "Frontend" },
+        { name: "Bootstrap", icon: "bootstrap", category: "Frontend" },
+        { name: "Flowbite", icon: "flowbite", category: "Frontend" },
+        { name: "astro", icon: "astro", category: "Frontend" },
 
         //Backend & Multiplataforma
         { name: "Java", icon: "java", category: "Backend" },
-        { name: "PHP", icon: "php", category: "Backend" }, 
+        { name: "PHP", icon: "php", category: "Backend" },
         { name: "Laravel", icon: "laravel", category: "Backend" },
         { name: "C#", icon: "c-sharp", category: "Backend" },
         { name: "SQL", icon: "sql", category: "Backend" },
-        { name: "Python", icon: "python", category: "Backend" }, 
+        { name: "Python", icon: "python", category: "Backend" },
 
-        { name: "Desktop", icon: "pc", category: "Environments" }, 
-        { name: "Android", icon: "android", category: "Environments" }, 
-        { name: "Unity", icon: "unity", category: "Environments" }, 
+        { name: "Desktop", icon: "pc", category: "Environments" },
+        { name: "Android", icon: "android", category: "Environments" },
+        { name: "Unity", icon: "unity", category: "Environments" },
 
         //DevOps & Tools
         { name: "GitHub", icon: "github", category: "DevOps" },
@@ -78,7 +78,7 @@ skills: [
         { name: "CAT", category: "Idiomas" },
         { name: "EN (B2)", category: "Idiomas" }
     ],
-    
+
 
     experience: {
         es: [
@@ -165,7 +165,7 @@ skills: [
                 institution: "Escola Pia Santa Anna Mataró",
                 degree: "Grado Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)",
                 startDate: "2024",
-                endDate: "Actualidad",
+                endDate: "2026",
                 description: "Enfoque en el desarrollo de aplicaciones para diversos entornos y lenguajes de programación modernos.",
                 technologies: ["Java", "SQL", "Android", "Sistemas"],
             },
@@ -183,7 +183,7 @@ skills: [
                 institution: "Escola Pia Santa Anna Mataró",
                 degree: "Higher Degree in Multiplatform Applications Development (DAM)",
                 startDate: "2024",
-                endDate: "Present",
+                endDate: "2026",
                 description: "Focus on developing applications for various environments and modern programming languages.",
                 technologies: ["Java", "SQL", "Android", "Systems"],
             },
